@@ -8,7 +8,7 @@ setup(
     maintainer="Ryan Lanese",
     maintainer_email="ryanlanese@gmail.com",
     description="Generates the valid sets of cards in a game of Set ",
-    license="MIT",
+    license="GNU",
     url='https://github.com/ryanml/SetSolver',
     keywords="set solve python"
 )
