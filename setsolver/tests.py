@@ -88,5 +88,53 @@ class SetSolverTests(unittest.TestCase):
         collection = [card_one, card_two, card_three]
         self.assertEqual(set_solver.is_a_set(collection), False)
 
+    """
+    Tests gen_possible_sets for 12 cards
+    (Taken from http://www.setgame.com/set/puzzle, solves the August 2nd, 2016 challenge)
+    """
+    def test_gen_possible_sets_twelve_cards(self):
+        set_solver = Solver()
+        card_one = Card('Green', 'Solid', 'Squiggle', 1)
+        card_two = Card('Purple', 'Empty', 'Diamond', 2)
+        card_three = Card('Purple', 'Striped', 'Squiggle', 1)
+        card_four = Card('Purple', 'Striped', 'Oval', 1)
+        card_five = Card('Red', 'Striped', 'Oval', 1)
+        card_six = Card('Red', 'Striped', 'Oval', 2)
+        card_seven = Card('Green', 'Solid', 'Squiggle', 2)
+        card_eight = Card('Green', 'Striped', 'Diamond', 3)
+        card_nine = Card('Purple', 'Empty', 'Squiggle', 1)
+        card_ten = Card('Purple', 'Solid', 'Squiggle', 3)
+        card_eleven = Card('Red', 'Striped', 'Oval', 3)
+        card_twelve = Card('Green', 'Striped', 'Diamond', 1)
+        collection = [card_one, card_two, card_three, card_four,
+                      card_five, card_six, card_seven, card_eight,
+                      card_nine, card_ten, card_eleven, card_twelve]
+        # Placed as members of one list for the test, each set is each group of three cards
+        correct_sets = [{'color': 'Green', 'shading': 'Solid', 'shape': 'Squiggle', 'number': 1},
+                        {'color': 'Purple', 'shading': 'Empty', 'shape': 'Diamond', 'number': 2},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 3},
+                        {'color': 'Purple', 'shading': 'Empty', 'shape': 'Diamond', 'number': 2},
+                        {'color': 'Purple', 'shading': 'Striped', 'shape': 'Oval', 'number': 1},
+                        {'color': 'Purple', 'shading': 'Solid', 'shape': 'Squiggle', 'number': 3},
+                        {'color': 'Purple', 'shading': 'Empty', 'shape': 'Diamond', 'number': 2},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 2},
+                        {'color': 'Green', 'shading': 'Solid', 'shape': 'Squiggle', 'number': 2},
+                        {'color': 'Purple', 'shading': 'Striped', 'shape': 'Squiggle', 'number': 1},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 1},
+                        {'color': 'Green', 'shading': 'Striped', 'shape': 'Diamond', 'number': 1},
+                        {'color': 'Purple', 'shading': 'Striped', 'shape': 'Squiggle', 'number': 1},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 2},
+                        {'color': 'Green', 'shading': 'Striped', 'shape': 'Diamond', 'number': 3},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 1},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 2},
+                        {'color': 'Red', 'shading': 'Striped', 'shape': 'Oval', 'number': 3}]
+        possible_sets = set_solver.gen_possible_sets(collection)
+        # Compares each card in the possible_sets to the confirmed cards of the correct set
+        card_inc = 0
+        for card_set in possible_sets:
+            for card in card_set:
+                self.assertEqual(card.dims, correct_sets[card_inc])
+                card_inc += 1
+
 if __name__ == '__main__':
     unittest.main()

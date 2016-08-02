@@ -75,3 +75,11 @@ class Solver(object):
             return True
         else:
             return False
+
+    """
+    The print_possible_sets function prints and formats all of the given
+    sets in a readable format.
+    """
+    def print_possible_sets(self, sets):
+        pass
+        
