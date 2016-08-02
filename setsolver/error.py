@@ -12,10 +12,12 @@ class CollectionSizeError(Exception):
         super(CollectionSizeError, self).__init__(ex_string)
 
 """
+The IncompatibleCardError is raised if a card that does the same/number of dimensions
+that is demanded in a collection.
 """
 class IncompatibleCardError(Exception):
 
     # Constructor
-    def __init__(self, card):
-        ex_string = "Error: %s is not compatible with the collection's dimensions" % card
+    def __init__(self):
+        ex_string = "Error: Card is not compatible with the collection's dimensions"
         super(IncompatibleCardError, self).__init__(ex_string)

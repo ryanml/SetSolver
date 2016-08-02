@@ -4,11 +4,11 @@ from error import *
 
 class Solver(object):
     """
-    Constructor takes in a set size argument
+    Constructor takes in a set size argument, and a list of dimensions
     """
-    def __init__(self, set_size=3, num_dimensions=4):
-        self.set_size = set_size
-        self.num_dimensions = num_dimensions
+    def __init__(self, dimensions):
+        self.set_size = 3
+        self.dimensions = dimensions
 
     """
     The gen_possible_sets function generates all possible
@@ -41,6 +41,11 @@ class Solver(object):
     and determines if it qualifies as a set
     """
     def is_a_set(self, cards):
+        # Check to make sure the cards are valid
+        for card in cards:
+            if self.validate_card(card):
+                continue
+        # Initial qualifications set
         dims_in_common = []
         cards_all_qualify = True
         cards_too_similar = False
@@ -57,7 +62,7 @@ class Solver(object):
             if len(comp) != 0:
                 cards_all_different = False
             # If two of the cards are equal, they are too similar to be a set
-            if len(comp) == self.num_dimensions:
+            if len(comp) == len(self.dimensions):
                 cards_too_similar = True
             # If neither above condition is met, pust similarities to list
             else:
@@ -77,9 +82,30 @@ class Solver(object):
             return False
 
     """
+    The validate_card function takes in a card object and determines if it can
+    be included in part of the collection
+    """
+    def validate_card(self, card):
+        # If the number of dimensions in the card differ, we can
+        # immediately throw the IncompatibleCardError
+        if len(card.dims) != len(self.dimensions):
+            raise IncompatibleCardError()
+        # Now check that all dimensions are the same, if not, throw an error
+        for dim in card.dims:
+            if dim not in self.dimensions:
+                raise IncompatibleCardError()
+        # Return true if valid
+        return True
+
+    """
     The print_possible_sets function prints and formats all of the given
     sets in a readable format.
     """
     def print_possible_sets(self, sets):
-        pass
-        
+        for card_set in sets:
+            for card in card_set:
+                card_string = ""
+                for key in card.dims:
+                    card_string += (key + "=" + str(card.dims[key]) + " ")
+                print card_string
+            print "\n"
