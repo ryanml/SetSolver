@@ -1,1 +1,1 @@
-__all__ = ['main', 'card', 'solver', 'tests']
+__all__ = ['main', 'card', 'solver', 'tests', 'error']
