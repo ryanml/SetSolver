@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import itertools
 from error import *
 
 class Solver(object):
@@ -8,17 +9,32 @@ class Solver(object):
     def __init__(self, set_size=3, num_dimensions=4):
         self.set_size = set_size
         self.num_dimensions = num_dimensions
-        self.possible_sets = []
 
     """
     The gen_possible_sets function generates all possible
     sets of cards given a collection of them
     Params: collection (list of Card objects)
-    Returns: perms (list of lists of Card objects)
+    Returns: perms (list of lists of Card objects), False if no sets are found
     """
     def gen_possible_sets(self, collection):
-        if len(collection) < self.set_size:
+        # Check to make sure the collection length
+        # is large enough to generate a set
+        coll_len = len(collection)
+        if coll_len < self.set_size:
             raise CollectionSizeError(self.set_size)
+        # Set possible sets to an empty list
+        possible_sets = []
+        # Generate all combinations of cards
+        combinations = list(itertools.combinations(collection, self.set_size))
+        # Check if each combination is a set, if it is, push it to possible_sets list
+        for comb in combinations:
+            if self.is_a_set(comb):
+                possible_sets.append(comb)
+        # If there are no possible sets, return False, else return the sets
+        if len(possible_sets) == 0:
+            return False
+        else:
+            return possible_sets
 
     """
     The is_a_set function takes in a list of three card objects
