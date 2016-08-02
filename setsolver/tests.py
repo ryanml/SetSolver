@@ -290,6 +290,104 @@ class SetSolverTests(unittest.TestCase):
             for card in card_set:
                 self.assertEqual(card.dims, correct_sets[card_inc])
                 card_inc += 1
+                
+    """
+    Similar to the previous test (in terms of input) generates all possible sets from
+    twelve cards with an extra dimension added ('Background')
+    """
+    def test_gen_possible_sets_twelve_cards_extra_dim(self):
+        set_solver = Solver(['Color', 'Shading', 'Shape', 'Number', 'Background'])
+        card_one = Card()
+        card_one.add_dimension('Color', 'Green')
+        card_one.add_dimension('Shading', 'Solid')
+        card_one.add_dimension('Shape', 'Squiggle')
+        card_one.add_dimension('Number', 1)
+        card_one.add_dimension('Background', 'White')
+        card_two = Card()
+        card_two.add_dimension('Color', 'Purple')
+        card_two.add_dimension('Shading', 'Empty')
+        card_two.add_dimension('Shape', 'Diamond')
+        card_two.add_dimension('Number', 2)
+        card_two.add_dimension('Background', 'Black')
+        card_three = Card()
+        card_three.add_dimension('Color', 'Purple')
+        card_three.add_dimension('Shading', 'Striped')
+        card_three.add_dimension('Shape', 'Squiggle')
+        card_three.add_dimension('Number', 1)
+        card_three.add_dimension('Background', 'White')
+        card_four = Card()
+        card_four.add_dimension('Color', 'Purple')
+        card_four.add_dimension('Shading', 'Striped')
+        card_four.add_dimension('Shape', 'Oval')
+        card_four.add_dimension('Number', 1)
+        card_four.add_dimension('Background', 'Gray')
+        card_five = Card()
+        card_five.add_dimension('Color', 'Red')
+        card_five.add_dimension('Shading', 'Striped')
+        card_five.add_dimension('Shape', 'Oval')
+        card_five.add_dimension('Number', 1)
+        card_five.add_dimension('Background', 'White')
+        card_six = Card()
+        card_six.add_dimension('Color', 'Red')
+        card_six.add_dimension('Shading', 'Striped')
+        card_six.add_dimension('Shape', 'Oval')
+        card_six.add_dimension('Number', 2)
+        card_six.add_dimension('Background', 'White')
+        card_seven = Card()
+        card_seven.add_dimension('Color', 'Green')
+        card_seven.add_dimension('Shading', 'Solid')
+        card_seven.add_dimension('Shape', 'Squiggle')
+        card_seven.add_dimension('Number', 2)
+        card_seven.add_dimension('Background', 'White')
+        card_eight = Card()
+        card_eight.add_dimension('Color', 'Green')
+        card_eight.add_dimension('Shading', 'Striped')
+        card_eight.add_dimension('Shape', 'Diamond')
+        card_eight.add_dimension('Number', 3)
+        card_eight.add_dimension('Background', 'White')
+        card_nine = Card()
+        card_nine.add_dimension('Color', 'Purple')
+        card_nine.add_dimension('Shading', 'Empty')
+        card_nine.add_dimension('Shape', 'Squiggle')
+        card_nine.add_dimension('Number', 1)
+        card_nine.add_dimension('Background', 'White')
+        card_ten = Card()
+        card_ten.add_dimension('Color', 'Purple')
+        card_ten.add_dimension('Shading', 'Solid')
+        card_ten.add_dimension('Shape', 'Squiggle')
+        card_ten.add_dimension('Number', 3)
+        card_ten.add_dimension('Background', 'White')
+        card_eleven = Card()
+        card_eleven.add_dimension('Color', 'Red')
+        card_eleven.add_dimension('Shading', 'Striped')
+        card_eleven.add_dimension('Shape', 'Oval')
+        card_eleven.add_dimension('Number', 3)
+        card_eleven.add_dimension('Background', 'White')
+        card_twelve = Card()
+        card_twelve.add_dimension('Color', 'Green')
+        card_twelve.add_dimension('Shading', 'Striped')
+        card_twelve.add_dimension('Shape', 'Diamond')
+        card_twelve.add_dimension('Number', 1)
+        card_twelve.add_dimension('Background', 'Black')
+        collection = [card_one, card_two, card_three, card_four,
+                      card_five, card_six, card_seven, card_eight,
+                      card_nine, card_ten, card_eleven, card_twelve]
+        correct_sets = [{'Color': 'Purple', 'Shading': 'Empty', 'Shape': 'Diamond', 'Number': 2, 'Background': 'Black'},
+                        {'Color': 'Purple', 'Shading': 'Striped', 'Shape': 'Oval', 'Number': 1, 'Background': 'Gray'},
+                        {'Color': 'Purple', 'Shading': 'Solid', 'Shape': 'Squiggle', 'Number': 3, 'Background': 'White'},
+                        {'Color': 'Purple', 'Shading': 'Striped', 'Shape': 'Squiggle', 'Number': 1, 'Background': 'White'},
+                        {'Color': 'Red', 'Shading': 'Striped', 'Shape': 'Oval', 'Number': 2, 'Background': 'White'},
+                        {'Color': 'Green', 'Shading': 'Striped', 'Shape': 'Diamond', 'Number': 3, 'Background': 'White'},
+                        {'Color': 'Red', 'Shading': 'Striped', 'Shape': 'Oval', 'Number': 1, 'Background': 'White'},
+                        {'Color': 'Red', 'Shading': 'Striped', 'Shape': 'Oval', 'Number': 2, 'Background': 'White'},
+                        {'Color': 'Red', 'Shading': 'Striped', 'Shape': 'Oval', 'Number': 3, 'Background': 'White'}]
+        possible_sets = set_solver.gen_possible_sets(collection)
+        # Compares each card in the possible_sets to the confirmed cards of the correct set
+        card_inc = 0
+        for card_set in possible_sets:
+            for card in card_set:
+                self.assertEqual(card.dims, correct_sets[card_inc])
+                card_inc += 1
 
 if __name__ == '__main__':
     unittest.main()
