@@ -1,5 +1,4 @@
 # SetSolver
-![cards](https://github.com/ryanml/SetSolver/blob/master/assets/set_cards.png "cards")
 Generates the valid sets of cards in a game of Set
 
 # Running the code
@@ -39,10 +38,12 @@ When the program is run, we are prompted for the dimensions that are in play for
 ![options](https://github.com/ryanml/SetSolver/blob/master/assets/set_dim_options.png "options")
 
 You can add a card to the collection by enter a '1'. For an example, we will enter this card:
+
 ![example](https://github.com/ryanml/SetSolver/blob/master/assets/two_ovals.png "example")
 
-For every dimension that we defined, we will be prompted for a state. There is no need to define the different kinds of states, there can be as many as you'd like.
-![enter-shape](https://github.com/ryanml/SetSolver/blob/master/assets/two_ovals.png "enter-shape")
+For every dimension that we defined, we will be prompted for a state. There is no need to define the different kinds of states, there can be as many as you'd like:
+
+![enter-shape](https://github.com/ryanml/SetSolver/blob/master/assets/enter_shape.png "enter-shape")
 
 If you enter something incorrectly for the card, you may enter a '3' at the options menu when you're done to delete it. Once all of the desired cards in the collection have been added, enter a '2' to generate all of the possible sets:
 ![all-sets](https://github.com/ryanml/SetSolver/blob/master/assets/all_sets.png "all-sets")
