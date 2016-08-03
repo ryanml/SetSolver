@@ -3,8 +3,7 @@
 class Card(object):
 
     """
-    Constructor takes in values for for dimensions:
-    Color, Number, Shape, and Shading
+    Constructor sets initial dimensions to an empty dictionary.
     """
     def __init__(self):
         self.dims = {}
