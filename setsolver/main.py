@@ -53,6 +53,17 @@ class SetSolverInterface(object):
             print "Error: There must be at least %d cards to build a set." % self.set_solver.set_size
 
     """
+    The delete_last_card function attempts to delete the last card entered
+    if it exists.
+    """
+    def delete_last_card(self):
+        if len(self.collection) == 0:
+            print "Error: There are no cards in the collection."
+        else:
+            deleted_card = self.collection.pop()
+            print "Card with following dimensions deleted:\n", deleted_card.dims
+
+    """
     The prompt_for_dimensions function gets the dimensions from the user that will persist
     for the card collection.
     """
@@ -86,6 +97,8 @@ class SetSolverInterface(object):
         elif user_choice == "2":
             self.call_to_gen_set()
         elif user_choice == "3":
+            self.delete_last_card()
+        elif user_choice == "4":
             print "Goodbye."
             self.open = False
         else:
@@ -98,7 +111,8 @@ class SetSolverInterface(object):
         print "\nPlease choose a number corresponding to the action you'd like to make:"
         print "1. Add a card to the collection"
         print "2. Generate all possible sets for the collection"
-        print "3. Exit\n"
+        print "3. Delete the last card entered."
+        print "4. Exit\n"
 
 def main():
     interface = SetSolverInterface()

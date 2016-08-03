@@ -196,6 +196,45 @@ class SetSolverTests(unittest.TestCase):
         self.assertEqual(set_solver.is_a_set(collection), False)
 
     """
+    Tests that given six cards where a set doesn't exist, false is returned.
+    """
+    def test_gen_possible_sets_six_cards_no_sets(self):
+        set_solver = Solver(['Color', 'Shape', 'Shading', 'Number'])
+        card_one = Card()
+        card_one.add_dimension('Color', 'Green')
+        card_one.add_dimension('Shading', 'Solid')
+        card_one.add_dimension('Shape', 'Squiggle')
+        card_one.add_dimension('Number', 1)
+        card_two = Card()
+        card_two.add_dimension('Color', 'Purple')
+        card_two.add_dimension('Shading', 'Empty')
+        card_two.add_dimension('Shape', 'Diamond')
+        card_two.add_dimension('Number', 2)
+        card_three = Card()
+        card_three.add_dimension('Color', 'Purple')
+        card_three.add_dimension('Shading', 'Striped')
+        card_three.add_dimension('Shape', 'Squiggle')
+        card_three.add_dimension('Number', 1)
+        card_four = Card()
+        card_four.add_dimension('Color', 'Purple')
+        card_four.add_dimension('Shading', 'Striped')
+        card_four.add_dimension('Shape', 'Oval')
+        card_four.add_dimension('Number', 1)
+        card_five = Card()
+        card_five.add_dimension('Color', 'Red')
+        card_five.add_dimension('Shading', 'Striped')
+        card_five.add_dimension('Shape', 'Oval')
+        card_five.add_dimension('Number', 1)
+        card_six = Card()
+        card_six.add_dimension('Color', 'Red')
+        card_six.add_dimension('Shading', 'Striped')
+        card_six.add_dimension('Shape', 'Oval')
+        card_six.add_dimension('Number', 2)
+        collection = [card_one, card_two, card_three,
+                      card_four, card_five, card_six]
+        self.assertEqual(set_solver.gen_possible_sets(collection), False)
+
+    """
     Tests gen_possible_sets for 12 cards
     (Taken from http://www.setgame.com/set/puzzle, solves the August 2nd, 2016 challenge)
     """
